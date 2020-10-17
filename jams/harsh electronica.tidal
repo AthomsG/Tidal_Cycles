@@ -1,0 +1,47 @@
+setcps(1) --slow tempo
+setcps (120/60/1.5) --fast tempo
+
+
+d1 $ jux rev $ off 0.25 (|+ n 12) $
+  every 2 (off 0.125 (|+ n 6)) $
+  every 5 (off 0.125 (|+ n 7)) $
+  n "<c(3, 8) a*2 f(3, 8, 2) [~ e*2]>" # sound "glitch" # legato 0.4 -- change legato
+
+d2 $ jux rev $
+  stack [
+    stack [
+    off 0.25 (|+ n 12) $
+    every 2 (off 0.125 (|+ n 6)) $
+    every 5 (off 0.125 (|+ n 7)) $
+    every 8 (stut 8 0.7 (-0.05)) $
+    n "<c(3, 8) a*2 f(3, 8, 2) [~ e*2]>" # sound "toys" # legato 0.5 # gain 0.8 # delaytime 1 # delay 0.5],
+    n "[c a f e]/2" # sound "wobble" # cut 5]
+
+--VARIATION
+d2 $ jux rev $
+  stack [
+    stack [
+    off 0.35 (|+ n 12) $
+    every 2 (off 0.425 (|+ n 10)) $
+    every 5 (off 0.525 (|+ n 7)) $
+    every 8 (stut 16 1 (-0.025)) $
+    every 1 (chunk 8 (#crush 2))$
+    n "<f(3, 8) d*2 c(3, 8, 2) [~ e*2]>" # sound "toys" # legato 0.5 # gain 0.8 # delaytime 0.5 # delay 0.5],
+    n "[c a f e]/2" # sound "wobble" # cut 5]
+
+d3 $ jux rev $ every 6 (rev) $ chunk 4 (hurry 2) $
+  stack[
+  every 4 (chunk 8 (fast 1.5)) $
+  sound "[drum [hh hh] [~ hh:3] hh]" # speed "2 4 1.5 3 0.5 1",
+  every 3 (chunk 4 (fast 2)) $
+  sound "hh*4"] # cut 2
+
+--d6 $ jux rev $ iter 4 $ loopAt "[3 1 2 4]*2" $ chop 8 $ sound "2" # gain 0.7 # speed 1/4
+d6 silence
+--d7 $ every 2(jux rev) $ every 8 (chunk 3(fast 8))$ every 12 (chunk 6(fast 16)) $ "[sn:2 sn:2 sn:2]/4" #gain 1.1 # speed 1.4
+d7 $ every 2(jux rev) $ every 8 (stut 8 0.7 (-0.05)) $ every 4 (stut 4 0.5 (-0.1))  $ sound "[sn:2*2]/3" # cut 2
+
+d1 $ silence
+d2 $ silence
+
+hush
